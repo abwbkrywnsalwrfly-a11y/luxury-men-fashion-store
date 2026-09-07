@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>متجر الفخامة للملابس الرجالية</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="container">
+            <div class="nav-logo">
+                <h1>👔 الفخامة</h1>
+            </div>
+            <ul class="nav-links">
+                <li><a href="#home">الرئيسية</a></li>
+                <li><a href="#products">المنتجات</a></li>
+                <li><a href="#about">عن المتجر</a></li>
+                <li><a href="#reviews">التقييمات</a></li>
+                <li><a href="#contact">تواصل معنا</a></li>
+            </ul>
+            <div class="nav-right">
+                <input type="text" id="searchInput" class="search-box" placeholder="بحث عن المنتجات...">
+                <button id="cartBtn" class="cart-btn">🛒 السلة <span id="cartCount">0</span></button>
+                <button id="loginBtn" class="login-btn">دخول</button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="hero-content">
+            <h1>ملابس رجالية فخمة وعصرية</h1>
+            <p>اختر من مجموعتنا الحصرية الأفضل في الأناقة والجودة</p>
+            <button class="btn-primary" onclick="document.getElementById('products').scrollIntoView()">تسوق الآن</button>
+        </div>
+        <img src="https://images.unsplash.com/photo-1594938298603-c8148c4dae35?w=800" alt="ملابس رجالية" class="hero-img">
+    </section>
+
+    <!-- Categories Section -->
+    <section id="categories" class="categories">
+        <div class="container">
+            <h2>أقسام المنتجات</h2>
+            <div class="categories-grid">
+                <div class="category-card" onclick="filterByCategory('تيشيرتات')">
+                    <img src="https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?w=300" alt="تيشيرتات">
+                    <h3>تيشيرتات</h3>
+                </div>
+                <div class="category-card" onclick="filterByCategory('قمصان')">
+                    <img src="https://images.unsplash.com/photo-1596399514826-b76226b67b7e?w=300" alt="قمصان">
+                    <h3>قمصان</h3>
+                </div>
+                <div class="category-card" onclick="filterByCategory('بناطيل')">
+                    <img src="https://images.unsplash.com/photo-1542272604-787c62d465d1?w=300" alt="بناطيل">
+                    <h3>بناطيل</h3>
+                </div>
+                <div class="category-card" onclick="filterByCategory('جاكيتات')">
+                    <img src="https://images.unsplash.com/photo-1551028719-00167b16ebc5?w=300" alt="جاكيتات">
+                    <h3>جاكيتات</h3>
+                </div>
+                <div class="category-card" onclick="filterByCategory('إكسسوارات')">
+                    <img src="https://images.unsplash.com/photo-1572635196237-14b3f281503f?w=300" alt="إكسسوارات">
+                    <h3>إكسسوارات</h3>
+                </div>
+                <div class="category-card" onclick="filterByCategory('أطقم')">
+                    <img src="https://images.unsplash.com/photo-1598572933382-b6c3eada00d8?w=300" alt="أطقم">
+                    <h3>أطقم متكاملة</h3>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Filters & Products Section -->
+    <section id="products" class="products-section">
+        <div class="container">
+            <h2>المنتجات</h2>
+            
+            <!-- Filters -->
+            <div class="filters">
+                <select id="priceFilter" onchange="applyFilters()">
+                    <option value="">جميع الأسعار</option>
+                    <option value="0-50">0 - 50 دينار</option>
+                    <option value="50-100">50 - 100 دينار</option>
+                    <option value="100-200">100 - 200 دينار</option>
+                    <option value="200">فوق 200 دينار</option>
+                </select>
+
+                <select id="sizeFilter" onchange="applyFilters()">
+                    <option value="">جميع المقاسات</option>
+                    <option value="S">صغير (S)</option>
+                    <option value="M">متوسط (M)</option>
+                    <option value="L">كبير (L)</option>
+                    <option value="XL">كبير جداً (XL)</option>
+                    <option value="XXL">كبير جداً جداً (XXL)</option>
+                </select>
+
+                <select id="sortFilter" onchange="applyFilters()">
+                    <option value="newest">الأحدث</option>
+                    <option value="price_low">السعر من الأقل للأعلى</option>
+                    <option value="price_high">السعر من الأعلى للأقل</option>
+                    <option value="bestseller">الأكثر مبيعاً</option>
+                </select>
+            </div>
+
+            <!-- Products Grid -->
+            <div class="products-grid" id="productsGrid">
+                <!-- سيتم ملء المنتجات بواسطة JavaScript -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Best Sellers Section -->
+    <section class="best-sellers">
+        <div class="container">
+            <h2>الأكثر مبيعاً</h2>
+            <div class="products-grid" id="bestSellersGrid">
+                <!-- سيتم ملء المنتجات بواسطة JavaScript -->
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="about">
+        <div class="container">
+            <h2>لماذا تختار الفخامة؟</h2>
+            <div class="about-grid">
+                <div class="about-card">
+                    <h3>✓ جودة عالية</h3>
+                    <p>نستخدم أفضل الخامات وأجودها لضمان راحتك ودوام المنتج</p>
+                </div>
+                <div class="about-card">
+                    <h3>✓ تصميم عصري</h3>
+                    <p>تصاميمنا تواكب أحدث الصيحات العالمية في عالم الموضة</p>
+                </div>
+                <div class="about-card">
+                    <h3>✓ أسعار منافسة</h3>
+                    <p>نقدم أفضل الأسعار مع عروض وخصومات مستمرة</p>
+                </div>
+                <div class="about-card">
+                    <h3>✓ خدمة عملاء ممتازة</h3>
+                    <p>فريقنا جاهز لمساعدتك في أي وقت</p>
+                </div>
+                <div class="about-card">
+                    <h3>✓ توصيل سريع</h3>
+                    <p>نوصل طلبك في الوقت المحدد بكل أمان</p>
+                </div>
+                <div class="about-card">
+                    <h3>✓ ضمان الرضا</h3>
+                    <p>إرجاع المنتج بدون تكاليف إذا لم تكن راضياً</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Reviews Section -->
+    <section id="reviews" class="reviews">
+        <div class="container">
+            <h2>تقييمات عملائنا</h2>
+            <div class="reviews-grid" id="reviewsGrid">
+                <!-- سيتم ملء التقييمات بواسطة JavaScript -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact">
+        <div class="container">
+            <h2>تواصل معنا</h2>
+            <div class="contact-grid">
+                <div class="contact-card">
+                    <h3>📱 الهاتف</h3>
+                    <p>+218 91 123 4567</p>
+                </div>
+                <div class="contact-card">
+                    <h3>📧 البريد الإلكتروني</h3>
+                    <p>info@alfokhama.com</p>
+                </div>
+                <div class="contact-card">
+                    <h3>⏰ ساعات العمل</h3>
+                    <p>9:00 صباحاً - 8:00 مساءً</p>
+                </div>
+                <div class="contact-card">
+                    <h3>📍 موقعنا</h3>
+                    <p>متاح على جميع المناطق</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2024 متجر الفخامة للملابس الرجالية. جميع الحقوق محفوظة.</p>
+        </div>
+    </footer>
+
+    <!-- Cart Modal -->
+    <div id="cartModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeCart()">&times;</span>
+            <h2>سلة التسوق</h2>
+            <div id="cartItems" class="cart-items">
+                <!-- سيتم ملء المنتجات بواسطة JavaScript -->
+            </div>
+            <div class="cart-summary">
+                <h3>المجموع: <span id="cartTotal">0</span> د.ل</h3>
+                <button class="btn-primary" onclick="goToCheckout()">إتمام الطلب</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Product Modal -->
+    <div id="productModal" class="modal">
+        <div class="modal-content product-detail">
+            <span class="close" onclick="closeModal()">&times;</span>
+            <div id="productDetail">
+                <!-- سيتم ملء تفاصيل المنتج بواسطة JavaScript -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Login Modal -->
+    <div id="loginModal" class="modal">
+        <div class="modal-content login-form">
+            <span class="close" onclick="closeLoginModal()">&times;</span>
+            <h2>تسجيل الدخول</h2>
+            <form onsubmit="handleLogin(event)">
+                <input type="email" placeholder="البريد الإلكتروني" required>
+                <input type="password" placeholder="كلمة المرور" required>
+                <button type="submit" class="btn-primary">دخول</button>
+                <p>ليس لديك حساب؟ <a href="#" onclick="toggleRegister()">إنشاء حساب</a></p>
+            </form>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
